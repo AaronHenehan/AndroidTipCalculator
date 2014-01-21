@@ -1,5 +1,7 @@
 package com.example.tipcalculator;
 
+import java.text.NumberFormat;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +18,7 @@ public class TipCalculatorActivity extends Activity {
 	private Button btn20;
 	private EditText etBillAmount;
 	private TextView tvTipAmount;
+	private NumberFormat format;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +34,17 @@ public class TipCalculatorActivity extends Activity {
 		
 		etBillAmount = (EditText) findViewById(R.id.etBillAmount);
 		tvTipAmount = (TextView) findViewById(R.id.tvTipAmount);
+		format = NumberFormat.getCurrencyInstance();
 	}
 	
 	private void setListenerAndTip(Button button, final float percentTip) {
 		button.setOnClickListener(new OnClickListener() {
-			
+			//NEED TO ADD SECOND DECIMAL PLACE!!!!!!
 			@Override
 			public void onClick(View v) {
 				float bill = Float.parseFloat(etBillAmount.getText().toString());
-				float tipAmount = (float)Math.round(bill * percentTip * 100)/100;
-				tvTipAmount.setText(" $" + tipAmount);
+				float tipAmount = bill * percentTip;
+				tvTipAmount.setText(format.format(tipAmount));
 			}
 		});
 	}
