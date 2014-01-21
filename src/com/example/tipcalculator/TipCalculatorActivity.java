@@ -39,7 +39,6 @@ public class TipCalculatorActivity extends Activity {
 	
 	private void setListenerAndTip(Button button, final float percentTip) {
 		button.setOnClickListener(new OnClickListener() {
-			//NEED TO ADD SECOND DECIMAL PLACE!!!!!!
 			@Override
 			public void onClick(View v) {
 				float bill = Float.parseFloat(etBillAmount.getText().toString());
